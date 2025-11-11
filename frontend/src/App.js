@@ -9,6 +9,9 @@ import ServerStats from "./components/ServerStats.tsx";
 function App() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
+  const [modServerState, setModServerState] =  useState("🔴 Server Offline")
+  const [smpServerState, setSmpServerState] =  useState("🔴 Server Offline")
+
   const snappedX = Math.round(pos.x / 7) * 7;
   const snappedY = Math.round(pos.y / 7) * 7;
 
@@ -30,14 +33,24 @@ function App() {
       />
       <div className="content">
         <div className="content">
-          <ServerInfo className="server-info" requirements={<Requirements items={[{ title: "Minecraft: ", display: "Latest Release", link:"https://minecraft.wiki/w/Java_Edition_version_history#Full_release"}]} />} buttonName="Not Available" serverName="Dev-Server" serverDescription="This server is mainly used for developing and testing plugins, mods, and other custom add-ons for the base game." />
-          <ServerInfo className="server-info" buttonName="Not Available" serverName="Mod-Server" serverDescription="Welcome to a modded Minecraft server with a custom modpack. Dive in and enjoy exploring! " />
-          <ServerInfo className="server-info" buttonName="Not Available" serverName="SMP-Server" serverDescription="Want all the latest features? Jump into the worlds of the always-up-to-date vanilla SMP."/>
+          <ServerInfo className="server-info" requirements={<Requirements items={[{ title: "Minecraft: ", display: "Latest Release", link:"https://minecraft.wiki/w/Java_Edition_version_history#Full_release"}]} />} buttonName="Start Server" serverName="Dev-Server" serverDescription="This server is mainly used for developing and testing plugins, mods, and other custom add-ons for the base game." />
+          <ServerInfo className="server-info" onStateChange={setModServerState} buttonName="Not Available" serverName="Mod-Server" serverDescription="Welcome to a modded Minecraft server with a custom modpack. Dive in and enjoy exploring! " />
+          <ServerInfo className="server-info" onStateChange={setSmpServerState} buttonName="Start Server" serverName="SMP-Server" serverDescription="Want all the latest features? Jump into the worlds of the always-up-to-date vanilla SMP."/>
         </div>
-        <div className="content-stats">
-          <ServerStats serverIP="51.154.202.221:25567" serverName="SMP-Server" serverState="🟢 Server Online" className="server-stats"/>
-          <ServerStats serverIP="51.154.202.221:25566" serverName="Mod-Server" className="server-stats"/>
-        </div>
+      </div>
+      <div className="content-stats">
+        <ServerStats
+          serverIP="51.154.202.221:25567"
+          serverName="SMP-Server"
+          serverState={smpServerState}
+          className="server-stats"
+        />
+        <ServerStats
+          serverIP="51.154.202.221:25566"
+          serverName="Mod-Server"
+          serverState={modServerState}
+          className="server-stats"
+        />
       </div>
     </div>
     

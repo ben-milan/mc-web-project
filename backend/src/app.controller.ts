@@ -1,10 +1,13 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
-import * as wol from "wol"
+import { Controller, Post, Body, Get } from '@nestjs/common'
 import * as dotenv from "dotenv"
+import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
 dotenv.config();
 
 @Controller()
 export class AppController {
+  constructor(private readonly httpService: HttpService ) {}
+
   @Get("hello")
   hello() {
     return "Hello"
@@ -27,9 +30,21 @@ export class AppController {
 
   @Post('start-server')
   async startServer(@Body('server') serverName: string) {
-  
-    console.log(serverName)
-    return "";
+    
+    const url = `${process.env.URL}`;
+    const payload = { token: `${process.env.TOKEN}`, server:`${serverName}`}
+    
+    const response = await firstValueFrom(
+      this.httpService.post(url, payload)
+    );
+    
+    if (response.data.status === "info") {
+      return { state: "running"}
+    } 
+
+    if (response.data.status === "success") {
+      return { state: "started"}
+    }
   }
   
 }

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-function Password({ endpoint }: { endpoint: string }) {
+interface PasswordProps {
+  endpoint: string;
+  onStateChange: (value: string) => void;
+}
+
+function Password({ endpoint, onStateChange }: PasswordProps) {
   const [password, setPassword] = useState("");
   const [bgColor, setBgColor] = useState("rgba(255, 255, 255, 0.00005)");
 
@@ -16,7 +21,8 @@ function Password({ endpoint }: { endpoint: string }) {
 
       const data = await res.json();
       if (data.valid) {
-        alert("correct");
+        setBgColor("rgba(0, 255, 0, 0.4)");
+        onStateChange("🟡 Server Starting...");
         const res = await fetch(`${backend + "start-server"}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -24,7 +30,15 @@ function Password({ endpoint }: { endpoint: string }) {
         });
 
         const startData = await res.json();
-        alert(startData.serverName);
+
+        if (startData.state === "started") {
+          onStateChange("🟢 Server Online");
+        }
+
+        if (startData.state === "running") {
+          onStateChange("🟢 Server Online");
+          alert("Server allready started!");
+        }
       } else {
         setBgColor("rgba(255, 0, 0, 0.4)");
       }

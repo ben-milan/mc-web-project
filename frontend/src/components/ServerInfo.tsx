@@ -9,6 +9,8 @@ interface ServerInfoProps {
   buttonName: string;
   requirements: string;
   serverDescription: string;
+  serverState: string;
+  onStateChange: (newState: string) => void;
 }
 
 function ServerInfo({
@@ -17,10 +19,11 @@ function ServerInfo({
   buttonName,
   serverDescription,
   requirements,
+  serverState,
+  onStateChange,
 }: ServerInfoProps) {
   const [clicked, setClicked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   return (
     <div className={className} onClick={() => setClicked((prev) => !prev)}>
@@ -46,7 +49,10 @@ function ServerInfo({
       )}
 
       {showPassword && (
-        <Password endpoint={serverName.toLowerCase().concat("-check-pw")} />
+        <Password
+          endpoint={serverName.toLowerCase().concat("-check-pw")}
+          onStateChange={onStateChange}
+        />
       )}
     </div>
   );
