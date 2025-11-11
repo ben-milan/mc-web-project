@@ -1,0 +1,326 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url("./img/bg-bw.png") center/cover no-repeat;
+  overflow: hidden;
+}
+
+.color-layer {
+  position: absolute;
+  inset: 0;
+  background: url("./img/bg-c.png") center/cover no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.server-info {
+  cursor: pointer;
+  position: relative;
+  margin: 0 5% 0 5%;
+  top: 0;
+  left: 0;
+  width: 18%;
+  color: rgba(255, 255, 255, 0.2);
+  height: 40%;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  text-align: center;
+  flex-direction: column; /* ensure text stacks vertically if needed */
+  overflow: scroll;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.00005);  
+  backdrop-filter: blur(3px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  
+  /* Smooth transition and entrance animation */
+  transition: all 0.5s ease;
+  transform-origin: center center;
+}
+
+.server-info:hover {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.85);
+
+  transform: translateY(-4.67vh) scale(1.05);
+}
+
+.content {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+}
+
+.content > * {
+  transform: translateY(-4.67vh); /* optional vertical offset */
+}
+
+.paragraph {
+  grid-row: 2 / 3;
+  font-size: 20px;
+  margin: 0 20px;
+  white-space: pre-line;
+}
+
+.header {
+  grid-row: 1 / 2;
+  font-size: 45px;
+}
+
+.startButton {
+  position: relative;
+  grid-row: 3 / 4;
+  justify-self: center;
+  width: 60%;
+  height: 30%;
+  min-height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.2);
+  font-style: oblique;
+  font-size: medium;
+  font-weight: 800;
+  cursor: pointer;
+  overflow: hidden; /* clip pseudo-element */
+  
+  background: none; /* remove direct background */
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+@media screen and ((max-width: 1450px) or (min-height: 450px))  {
+  .startButton {
+    margin: 10px 0px;
+  }
+  .whitelist {
+    margin: 10px 0px;
+  }
+  
+}
+
+.startButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.0001); /* almost transparent */
+  backdrop-filter: blur(1px) saturate(120%);
+  -webkit-backdrop-filter: blur(1px) saturate(120%);
+  border-radius: 15px;
+  z-index: -1;
+  transition: all 0.5s ease;
+}
+
+.startButton:hover::before {
+  background: rgba(255, 255, 255, 0.02); /* slightly brighter on hover */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.startButton:hover {
+  transform: scale(1.05);
+  color: rgba(255, 255, 255, 0.85)
+}
+
+.front-face {
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: 0.8s;
+  transform-style: preserve-3d;
+}
+
+.slide-text {
+  display: inline-block;
+  transform: translateY(20px); /* start slightly below */
+  opacity: 0;                  /* start invisible */
+  animation: slide-fade 0.4s forwards;
+}
+
+@keyframes slide-fade {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.requirements {
+  color: #08f;
+}
+
+.requirements a:visited {
+  color: #08f;
+}
+
+.whitelist {
+  position: relative;
+  text-align: center;
+  grid-row: 3 / 4;
+  justify-self: center;
+  width: 60%;
+  height: 30%;
+  min-height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: medium;
+  overflow: hidden;
+  background: none;
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+
+
+.whitelist:hover {
+  transform: scale(1.05);
+  color: rgba(255, 255, 255, 0.85)
+}
+
+.container-pw {
+  position: relative;
+  text-align: center;
+  grid-row: 4 / 4;
+  justify-self: center;
+  width: 60%;
+  height: 30%;
+  min-height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: medium;
+  overflow: hidden;
+  background: none;
+  z-index: 0;
+  transition: all 0.5s ease;
+  margin-bottom: 5%;
+
+}
+
+
+.server-stats {
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 4vh;
+  top: 2%;
+  left: 0%;
+  width: 74.5%;
+  color: rgba(255, 255, 255, 0.2);
+  height: 10vh;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  text-align: center;
+  flex-direction: column; /* ensure text stacks vertically if needed */
+  overflow: scroll;
+
+  background: rgba(255, 255, 255, 0.00005);  
+  backdrop-filter: blur(3px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  
+  /* Smooth transition and entrance animation */
+  transition: all 0.5s ease;
+  transform-origin: center center;
+}
+
+.server-stats {
+  overflow: scroll;
+  cursor: pointer;
+  transition: all;
+  color: rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease;
+  transform-origin: center center;
+}
+
+.server-stats:hover {
+  
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.85);
+
+  
+}
+
+.server-stats table {
+  overflow: scroll;
+  width: 100%;
+  border-collapse: collapse; /* removes double borders */
+  table-layout: fixed; /* keeps columns even */
+}
+
+.server-stats th {
+  overflow: scroll;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 10px 20px; /* distance inside each cell */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.server-stats td {
+  overflow: scroll;
+  font-size: 1rem;
+  padding: 8px 20px;
+}
+
+.server-stats th + th,
+.server-stats td + td {
+  overflow: scroll;
+  padding-left: 40px; /* adds distance *between* columns */
+}
+
+.server-stats tr {
+  overflow: scroll;
+  text-align: center;
+}
+
+.content-stats {
+  overflow: scroll;
+  z-index: 10;
+  position: absolute;
+  top: 70%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.server-stats th,
+.server-stats td {
+  color: inherit;
+  transition: color 0.5s ease;
+}
