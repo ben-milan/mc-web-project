@@ -2,14 +2,13 @@ import React, { useState } from "react";
 
 interface PasswordProps {
   endpoint: string;
+  backend: string;
   onStateChange: (value: string) => void;
 }
 
-function Password({ endpoint, onStateChange }: PasswordProps) {
+function Password({ endpoint, onStateChange, backend }: PasswordProps) {
   const [password, setPassword] = useState("");
   const [bgColor, setBgColor] = useState("rgba(255, 255, 255, 0.00005)");
-
-  const backend = "http://localhost:3001/";
 
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

@@ -10,6 +10,7 @@ interface ServerInfoProps {
   requirements: string;
   serverDescription: string;
   serverState: string;
+  backendURL: string;
   onStateChange: (newState: string) => void;
 }
 
@@ -19,6 +20,7 @@ function ServerInfo({
   buttonName,
   serverDescription,
   requirements,
+  backendURL,
   serverState,
   onStateChange,
 }: ServerInfoProps) {
@@ -50,6 +52,7 @@ function ServerInfo({
 
       {showPassword && (
         <Password
+          backend={backendURL}
           endpoint={serverName.toLowerCase().concat("-check-pw")}
           onStateChange={onStateChange}
         />
