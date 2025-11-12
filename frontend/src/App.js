@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Requirements from "./components/Requirements.tsx";
 
@@ -7,6 +7,9 @@ import ServerInfo from "./components/ServerInfo.tsx";
 import ServerStats from "./components/ServerStats.tsx";
 
 function App() {
+
+ 
+
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
   const [modServerState, setModServerState] =  useState("🔴 Server Offline")
@@ -14,6 +17,48 @@ function App() {
 
   const snappedX = Math.round(pos.x / 7) * 7;
   const snappedY = Math.round(pos.y / 7) * 7;
+
+  useEffect(() => {
+    const API_URL = process.env.REACT_APP_STATUS_URL;
+  
+    async function fetchServerStatus() {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("Failed to fetch server status");
+  
+        const data = await res.json();
+        console.log("Server status data:", data);
+  
+        // Map backend status to frontend state
+        setModServerState(
+          data["mod-server"]?.status === "offline"
+            ? "🔴 Server Offline"
+            : "🟢 Server Online"
+        );
+  
+        setSmpServerState(
+          data["smp-server"]?.status === "offline"
+            ? "🔴 Server Offline"
+            : "🟢 Server Online"
+        );
+  
+        // If you want to also track dev-server status, you can add another state
+        // setDevServerState(
+        //   data["dev-server"]?.status === "offline"
+        //     ? "🔴 Server Offline"
+        //     : "🟢 Server Online"
+        // );
+  
+      } catch (err) {
+        console.error("Error fetching server state:", err);
+        // Optional: fallback to offline if fetch fails
+        setModServerState("🔴 Server Offline");
+        setSmpServerState("🔴 Server Offline");
+      }
+    }
+  
+    fetchServerStatus();
+  }, []);
 
   return (
     <div

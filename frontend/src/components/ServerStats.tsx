@@ -16,16 +16,20 @@ function ServerStats({
   return (
     <div className={className}>
       <table>
-        <tr>
-          <th>Server Name</th>
-          <th>State</th>
-          <th>IP</th>
-        </tr>
-        <tr>
-          <td>{serverName}</td>
-          <td>{serverState}</td>
-          <td>{serverIP}</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Server Name</th>
+            <th>State</th>
+            <th>IP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{serverName}</td>
+            <td>{serverState}</td>
+            <td>{serverIP}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

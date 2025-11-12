@@ -37,7 +37,7 @@ function Password({ endpoint, onStateChange }: PasswordProps) {
 
         if (startData.state === "running") {
           onStateChange("🟢 Server Online");
-          alert("Server allready started!");
+          alert("Server has already been started!");
         }
       } else {
         setBgColor("rgba(255, 0, 0, 0.4)");
