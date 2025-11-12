@@ -27,6 +27,8 @@ function ServerInfo({
   const [clicked, setClicked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  console.log(backendURL);
+
   return (
     <div className={className} onClick={() => setClicked((prev) => !prev)}>
       <h2 key={clicked ? "reqs" : "title"} className="header slide-text">

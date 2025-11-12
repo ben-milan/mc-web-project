@@ -8,7 +8,7 @@ import ServerStats from "./components/ServerStats.tsx";
 
 function App() {
 
- 
+  const BACKEND = process.env.REACT_APP_BACKEND_URL;
 
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     const API_URL = process.env.REACT_APP_STATUS_URL;
-  
+    
     async function fetchServerStatus() {
       try {
         const res = await fetch(API_URL);
@@ -78,9 +78,9 @@ function App() {
       />
       <div className="content">
         <div className="content">
-          <ServerInfo backendURL={process.env.REACT_APP_BACKEND_URL} className="server-info" requirements={<Requirements items={[{ title: "Minecraft: ", display: "Latest Release", link:"https://minecraft.wiki/w/Java_Edition_version_history#Full_release"}]} />} buttonName="Start Server" serverName="Dev-Server" serverDescription="This server is mainly used for developing and testing plugins, mods, and other custom add-ons for the base game." />
-          <ServerInfo className="server-info" onStateChange={setModServerState} buttonName="Not Available" serverName="Mod-Server" serverDescription="Welcome to a modded Minecraft server with a custom modpack. Dive in and enjoy exploring! " />
-          <ServerInfo className="server-info" onStateChange={setSmpServerState} buttonName="Start Server" serverName="SMP-Server" serverDescription="Want all the latest features? Jump into the worlds of the always-up-to-date vanilla SMP."/>
+          <ServerInfo backendURL={BACKEND} className="server-info" requirements={<Requirements items={[{ title: "Minecraft: ", display: "Latest Release", link:"https://minecraft.wiki/w/Java_Edition_version_history#Full_release"}]} />} buttonName="Start Server" serverName="Dev-Server" serverDescription="This server is mainly used for developing and testing plugins, mods, and other custom add-ons for the base game." />
+          <ServerInfo backendURL={BACKEND} className="server-info" onStateChange={setModServerState} buttonName="Not Available" serverName="Mod-Server" serverDescription="Welcome to a modded Minecraft server with a custom modpack. Dive in and enjoy exploring! " />
+          <ServerInfo backendURL={BACKEND} className="server-info" onStateChange={setSmpServerState} buttonName="Start Server" serverName="SMP-Server" serverDescription="Want all the latest features? Jump into the worlds of the always-up-to-date vanilla SMP."/>
         </div>
       </div>
       <div className="content-stats">
