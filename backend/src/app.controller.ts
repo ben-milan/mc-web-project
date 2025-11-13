@@ -8,11 +8,23 @@ dotenv.config();
 export class AppController {
   constructor(private readonly httpService: HttpService ) {}
 
-  @Get("hello")
+  @Get("/")
   hello() {
     return "Hello"
   }
-   
+
+  @Get("/status")
+  async status() {
+    
+    const url = `${process.env.STATUS_URL}`;
+    
+    const response = await firstValueFrom(
+      this.httpService.get(url)
+    );
+    
+    return response.data;
+  }
+
   @Post('mod-server-check-pw')
   checkMod(@Body('password') password: string) {
     return { valid: password === process.env.MOD_SERVER_PW, server:"mod-server"}

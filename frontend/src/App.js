@@ -25,7 +25,8 @@ function App() {
       try {
         const res = await fetch(API_URL);
         if (!res.ok) throw new Error("Failed to fetch server status");
-  
+        
+        console.log(res)
         const data = await res.json();
         console.log("Server status data:", data);
   
