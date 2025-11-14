@@ -14,7 +14,7 @@ function Requirements({ items }: RequirementsProps) {
   return (
     <div className="requirements-list">
       {items.map((item, index) => (
-        <p key={index}>
+        <p key={index} className="req-box">
           {item.title}
           <a
             className="requirements"
