@@ -3,6 +3,32 @@
   padding: 0;
 }
 
+*::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-button {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 .background {
   position: relative;
   width: 100vw;
@@ -279,40 +305,34 @@
 }
 
 .server-stats table {
-  overflow: scroll;
   width: 100%;
   border-collapse: collapse; /* removes double borders */
   table-layout: fixed; /* keeps columns even */
 }
 
 .server-stats th {
-  overflow: scroll;
   font-size: 1.2rem;
   font-weight: 700;
-  padding: 10px 20px; /* distance inside each cell */
+  padding: 10px 20px 15px 20px; /* distance inside each cell */
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .server-stats td {
-  overflow: scroll;
   font-size: 1rem;
   padding: 8px 20px;
 }
 
 .server-stats th + th,
 .server-stats td + td {
-  overflow: scroll;
   padding-left: 40px; /* adds distance *between* columns */
 }
 
 .server-stats tr {
-  overflow: scroll;
   text-align: center;
 }
 
 .content-stats {
-  overflow: scroll;
   z-index: 10;
   position: absolute;
   top: 70%;
@@ -328,4 +348,5 @@
 .server-stats td {
   color: inherit;
   transition: color 0.5s ease;
+  line-height: 1;
 }
