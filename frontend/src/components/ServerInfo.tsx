@@ -7,11 +7,10 @@ interface ServerInfoProps {
   className?: string;
   serverName: string;
   buttonName: string;
-  requirements: string;
+  requirements?: string;
   serverDescription: string;
-  serverState: string;
   backendURL: string;
-  onStateChange: (newState: string) => void;
+  onStateChange?: (newState: string) => void;
 }
 
 function ServerInfo({
@@ -21,7 +20,6 @@ function ServerInfo({
   serverDescription,
   requirements,
   backendURL,
-  serverState,
   onStateChange,
 }: ServerInfoProps) {
   const [clicked, setClicked] = useState(false);
