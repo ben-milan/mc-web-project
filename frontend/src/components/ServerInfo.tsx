@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import StartServerButton from "./StartServerButton.tsx";
-import Whitelist from "./Whitelist.tsx";
-import Password from "./Password.tsx";
+import StartServerButton from "./StartServerButton";
+import Whitelist from "./Whitelist";
+import Password from "./Password";
 
 interface ServerInfoProps {
   className?: string;
