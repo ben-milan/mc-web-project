@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+// @ts-ignore
 import StartServerButton from "./StartServerButton.tsx";
+// @ts-ignore
 import Whitelist from "./Whitelist.tsx";
+// @ts-ignore
 import Password from "./Password.tsx";
 
 interface ServerInfoProps {
