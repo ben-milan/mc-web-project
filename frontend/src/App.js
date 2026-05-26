@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Requirements from "./components/Requirements";
+import Requirements from "./components/Requirements.tsx";
 
-import ServerInfo from "./components/ServerInfo";
+import ServerInfo from "./components/ServerInfo.tsx";
 
-import ServerStats from "./components/ServerStats";
+import ServerStats from "./components/ServerStats.tsx";
 
 function App() {
 
