@@ -24,7 +24,12 @@ function App() {
     async function fetchServerStatus() {
       try {
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error("Failed to fetch server status");
+        if (!res.ok) {
+          console.error("Failed to fetch server status:", res.status);
+          setModServerState("🔴 Server Offline");
+          setSmpServerState("🔴 Server Offline");
+          return;
+        }
         const data = await res.json();
   
         // Map backend status to frontend state
