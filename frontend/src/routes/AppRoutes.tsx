@@ -1,8 +1,12 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
-import HomePage from "../pages/HomePage";
-import AdminDashboard from "../pages/AdminDashboard";
-import AdminLayout from "../layouts/AdminLayout";
+// @ts-ignore
+import MainLayout from "../layouts/MainLayout.tsx";
+// @ts-ignore
+import HomePage from "../pages/HomePage.tsx";
+// @ts-ignore
+import AdminDashboard from "../pages/AdminDashboard.tsx";
+// @ts-ignore
+import AdminLayout from "../layouts/AdminLayout.tsx";
 
 export default function AppRoutes() {
     return (
