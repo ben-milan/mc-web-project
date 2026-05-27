@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import Requirements from "../components/Requirements";
-import ServerInfo from "../components/ServerInfo";
-import ServerStats from "../components/ServerStats";
+// @ts-ignore
+import Requirements from "../components/Requirements.tsx";
+// @ts-ignore
+import ServerInfo from "../components/ServerInfo.tsx";
+// @ts-ignore
+import ServerStats from "../components/ServerStats.tsx";
 
 function App() {
 
