@@ -19,7 +19,7 @@ export class UsersService {
       10,
     );
     this.users = [
-      { id: 1, username: 'admin', passwordHash: hash, role: 'admin' },
+      { id: 1, username: 'bmk_0909', passwordHash: hash, role: 'admin' },
     ];
   }
 
