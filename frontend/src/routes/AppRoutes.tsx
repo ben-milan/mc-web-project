@@ -1,29 +1,35 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-// @ts-ignore
-import MainLayout from "../layouts/MainLayout.tsx";
-// @ts-ignore
-import HomePage from "../pages/HomePage.tsx";
-// @ts-ignore
-import AdminDashboard from "../pages/AdminDashboard.tsx";
-// @ts-ignore
-import AdminLayout from "../layouts/AdminLayout.tsx";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from '../auth/AuthProvider';
+import RequireAdmin from '../auth/RequireAdmin';
+
+import MainLayout from '../layouts/MainLayout';
+import AdminLayout from '../layouts/AdminLayout';
+
+import HomePage from '../pages/HomePage';
+import LoginPage from '../pages/LoginPage';
+import AdminDashboard from '../pages/AdminDashboard';
 
 export default function AppRoutes() {
     return (
         <BrowserRouter>
-            <Routes>
+            <AuthProvider>
+                <Routes>
 
-                {/* Public Routes */}
-                <Route element={<MainLayout />}>
-                    <Route path="/" element={<HomePage />} />
-                </Route>
+                    {/* Public */}
+                    <Route element={<MainLayout />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                    </Route>
 
-                {/* Admin routes (protected by Phase 4) */}
-                <Route path="/admin" element={<AdminLayout />}>
-                    <Route index element={<AdminDashboard />} />
-                </Route>
+                    {/* Admin — protected */}
+                    <Route element={<RequireAdmin />}>
+                        <Route path="/admin" element={<AdminLayout />}>
+                            <Route index element={<AdminDashboard />} />
+                        </Route>
+                    </Route>
 
-            </Routes>
+                </Routes>
+            </AuthProvider>
         </BrowserRouter>
-    )
+    );
 }
