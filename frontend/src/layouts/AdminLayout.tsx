@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '../auth/AuthProvider';
+// @ts-ignore
+import { useAuth } from '../auth/AuthProvider.tsx';
 
 export default function AdminLayout() {
     const { logout } = useAuth();
