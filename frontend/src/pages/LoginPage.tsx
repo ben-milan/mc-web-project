@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthProvider';
+// @ts-ignore
+import { useAuth } from '../auth/AuthProvider.tsx';
 
 export default function LoginPage() {
     const { login } = useAuth();

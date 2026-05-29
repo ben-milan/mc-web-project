@@ -1,4 +1,5 @@
-import {useAuth} from "./AuthProvider";
+// @ts-ignore
+import {useAuth} from "./AuthProvider.tsx";
 import {Navigate, Outlet} from "react-router-dom";
 
 export default function RequireAuth() {

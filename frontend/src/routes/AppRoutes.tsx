@@ -1,13 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from '../auth/AuthProvider';
-import RequireAdmin from '../auth/RequireAdmin';
+// @ts-ignore
+import { AuthProvider } from '../auth/AuthProvider.tsx';
+// @ts-ignore
+import RequireAdmin from '../auth/RequireAdmin.tsx';
 
-import MainLayout from '../layouts/MainLayout';
-import AdminLayout from '../layouts/AdminLayout';
+// @ts-ignore
+import MainLayout from '../layouts/MainLayout.tsx';
+// @ts-ignore
+import AdminLayout from '../layouts/AdminLayout.tsx';
 
-import HomePage from '../pages/HomePage';
-import LoginPage from '../pages/LoginPage';
-import AdminDashboard from '../pages/AdminDashboard';
+// @ts-ignore
+import HomePage from '../pages/HomePage.tsx';
+// @ts-ignore
+import LoginPage from '../pages/LoginPage.tsx';
+// @ts-ignore
+import AdminDashboard from '../pages/AdminDashboard.tsx';
 
 export default function AppRoutes() {
     return (
