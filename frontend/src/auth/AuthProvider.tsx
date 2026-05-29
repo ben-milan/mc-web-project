@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 // @ts-ignore
-import { getToken, removeToken, parseRole, saveToken, login as apiLogin } from '../services/authService.tsx';
+import { getToken, removeToken, parseRole, saveToken, login as apiLogin } from '../services/authService.ts';
 import * as React from "react";
 
 type AuthContextType = {
