@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+
 // @ts-ignore
 import { getToken, removeToken, parseRole, saveToken, login as apiLogin } from '../services/authService.ts';
 import * as React from "react";
@@ -18,8 +19,8 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
 
     async function login(username: string, password: string) {
         const data = await apiLogin(username, password);
-        saveToken(data.access_token);
-        setToken(data.access_token);
+        saveToken(data.accessToken);
+        setToken(data.accessToken);
         setRole(data.role);
     }
 

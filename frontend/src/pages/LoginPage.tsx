@@ -11,13 +11,16 @@ export default function LoginPage() {
     const [error, setError] = useState('');
 
 
-    async function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setError('');
         try {
+            console.log('Attempting login...');
             await login(username, password);
+            console.log('Login success, navigating...');
             navigate('/admin');
-        } catch {
+        } catch (err) {
+            console.error('Login error:', err);
             setError('Invalid username or password');
         }
     }
