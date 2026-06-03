@@ -15,6 +15,8 @@ import HomePage from '../pages/HomePage.tsx';
 import LoginPage from '../pages/LoginPage.tsx';
 // @ts-ignore
 import AdminDashboard from '../pages/AdminDashboard.tsx';
+// @ts-ignore
+import ServerManagement from "../pages/ServerManagement.tsx";
 
 export default function AppRoutes() {
     return (
@@ -32,6 +34,7 @@ export default function AppRoutes() {
                     <Route element={<RequireAdmin />}>
                         <Route path="/admin" element={<AdminLayout />}>
                             <Route index element={<AdminDashboard />} />
+                            <Route path="server" element={<ServerManagement />} />
                         </Route>
                     </Route>
 
