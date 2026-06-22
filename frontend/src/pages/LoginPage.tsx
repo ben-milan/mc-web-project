@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @ts-ignore
 import { useAuth } from '../auth/AuthProvider.tsx';
+// @ts-ignore
+import styles from "./LoginPage.module.css"
 
 export default function LoginPage() {
     const { login } = useAuth();
@@ -15,33 +17,38 @@ export default function LoginPage() {
         e.preventDefault();
         setError('');
         try {
-            console.log('Attempting login...');
             await login(username, password);
-            console.log('Login success, navigating...');
             navigate('/admin');
         } catch (err) {
-            console.error('Login error:', err);
             setError('Invalid username or password');
         }
     }
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    placeholder="Username"
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
-                <button type="submit">Log In</button>
-            </form>
+        <div className={styles["login-container"]}>
+            <h1>ADMIN-LOGIN</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.field}>
+                        <input
+                            id="username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                            placeholder=" "
+                        />
+                        <label htmlFor="username">Username</label>
+                    </div>
+                    <div className={styles.field}>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            placeholder=" "
+                        />
+                        <label htmlFor="password">Password</label>
+                    </div>
+                    <button type="submit">Log In</button>
+                </form>
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );

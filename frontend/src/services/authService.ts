@@ -1,8 +1,8 @@
-const API_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:3001';
+const API_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:3001/';
 
 export async function login(username: string, password: string) {
 
-    const res = await fetch(`${API_URL}auth/login`, {
+    const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
