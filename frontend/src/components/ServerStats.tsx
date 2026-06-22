@@ -1,4 +1,6 @@
 import React from "react";
+// @ts-ignore
+import classes from "../pages/HomePage.module.css"
 
 interface ServerStatsProps {
   className?: string;
@@ -14,7 +16,7 @@ function ServerStats({
   serverIP,
 }: ServerStatsProps) {
   return (
-    <div className={className}>
+    <div className={`${classes[`${className}`]}`}>
       <table>
         <thead>
           <tr>

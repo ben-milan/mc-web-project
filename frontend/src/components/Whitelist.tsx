@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// @ts-ignore
+import classes from "../pages/HomePage.module.css";
+
 function Whitelist() {
   const [value, setValue] = useState("");
 
@@ -15,7 +18,7 @@ function Whitelist() {
       type="text"
       name="whitelist"
       id="whitelist"
-      className="whitelist"
+      className={`${classes.whitelist}`}
       placeholder="Work in Progress"
       value={value}
       onChange={(e) => setValue(e.target.value)}

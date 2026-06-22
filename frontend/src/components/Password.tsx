@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// @ts-ignore
+import classes from "../pages/HomePage.module.css"
+
 interface PasswordProps {
   endpoint: string;
   backend: string;
@@ -53,7 +56,7 @@ function Password({ endpoint, onStateChange, backend }: PasswordProps) {
       type="text"
       name="password"
       id="password"
-      className="container-pw"
+      className={`${classes["container-pw"]}`}
       style={{ backgroundColor: bgColor }}
       placeholder="Enter the Code"
       value={password}

@@ -5,6 +5,8 @@ import StartServerButton from "./StartServerButton.tsx";
 import Whitelist from "./Whitelist.tsx";
 // @ts-ignore
 import Password from "./Password.tsx";
+// @ts-ignore
+import classes from "../pages/HomePage.module.css"
 
 interface ServerInfoProps {
   className?: string;
@@ -30,13 +32,13 @@ function ServerInfo({
 
   return (
     <div className={className} onClick={() => setClicked((prev) => !prev)}>
-      <h2 key={clicked ? "reqs" : "title"} className="header slide-text">
+      <h2 key={clicked ? "reqs" : "title"} className={`${classes["header"]} ${classes["slide-text"]}`}>
         {clicked ? "Reqs" : serverName}
       </h2>
 
       <div
         key={clicked ? "reqs-desc" : "desc"}
-        className="paragraph slide-text"
+        className={`${classes["paragraph"]} ${classes["slide-text"]}`}
       >
         {clicked ? (requirements ? requirements : "N/A") : serverDescription}
       </div>
@@ -45,7 +47,7 @@ function ServerInfo({
         <Whitelist />
       ) : (
         <StartServerButton
-          className="startButton"
+          className={`${classes["startButton"]}`}
           name={buttonName}
           onClick={() => setShowPassword((prev) => !prev)}
         />

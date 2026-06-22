@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
+// @ts-ignore
+import classes from "./HomePage.module.css";
 // @ts-ignore
 import Requirements from "../components/Requirements.tsx";
 // @ts-ignore
@@ -59,13 +60,13 @@ function App() {
 
     return (
         <div
-            className="background"
+            className={`${classes.background}`}
             onMouseMove={(e) =>
                 setPos({ x: e.clientX, y: e.clientY })
             }
         >
             <div
-                className="color-layer"
+                className={`${classes["color-layer"]}`}
                 style={{
                     WebkitMaskImage: `radial-gradient(circle 800px at ${snappedX}px ${snappedY}px, black 0%, transparent 100%)`,
                     WebkitMaskRepeat: "no-repeat",
@@ -73,11 +74,11 @@ function App() {
                     maskRepeat: "no-repeat",
                 }}
             />
-            <div className="content">
-                <div className="content">
+            <div className={`${classes.content}`}>
+                <div className={`${classes.content}`}>
                     <ServerInfo
                         backendURL={BACKEND}
-                        className="server-info"
+                        className={`${classes["server-info"]}`}
                         requirements={<Requirements items={[{ title: "Minecraft: ", display: "Latest Release", link:"https://minecraft.wiki/w/Java_Edition_version_history#Full_release"}]} />}
                         buttonName="Start Server"
                         serverName="Dev-Server"
@@ -85,7 +86,7 @@ function App() {
                     />
                     <ServerInfo
                         backendURL={BACKEND}
-                        className="server-info"
+                        className={`${classes["server-info"]}`}
                         onStateChange={setModServerState}
                         buttonName="Not Available"
                         serverName="Mod-Server"
@@ -93,7 +94,7 @@ function App() {
                     />
                     <ServerInfo
                         backendURL={BACKEND}
-                        className="server-info"
+                        className={`${classes["server-info"]}`}
                         requirements={<Requirements items={[{ title: "Minecraft (Java): ", display: "v1.21.11", link: "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-21-11"}, { title: "Rec. Modpack: ", display: "Fabric Modpack", link:"https://modrinth.com/modpack/ohne-schnickschnack"}]}/>}
                         onStateChange={setSmpServerState}
                         buttonName="Under Maintenance"
@@ -101,7 +102,7 @@ function App() {
                         serverDescription="Want all the latest features? Jump into the worlds of the always-up-to-date fabric SMP."/>
                 </div>
             </div>
-            <div className="content-stats">
+            <div className={`${classes["content-stats"]}`}>
                 <ServerStats
                     serverIP="51.154.202.221:25567"
                     serverName="SMP-Server"
