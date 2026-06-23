@@ -41,25 +41,14 @@ function ServerDropdown({ onSelect, selected }: { onSelect: (key: string) => voi
 export default function AdminLayout() {
     const { logout } = useAuth();
     const [selectedServer, setSelectedServer] = useState<string | null>(null);
-    const [showOutlet, setShowOutlet] = useState(true);
-
-    const handleNavLinkClick = () => {
-        setSelectedServer(null);
-        setShowOutlet(true);
-    };
-
-    const handleServerSelect = (key: string) => {
-        setSelectedServer(key);
-        setShowOutlet(false);
-    };
 
     return (
         <div className={classes.adminLayout}>
             <aside className={classes.adminSidebar}>
                 <h1>Admin Panel</h1>
                 <nav>
-                    <NavLink to="/admin" end onClick={handleNavLinkClick}>Dashboard</NavLink>
-                    <ServerDropdown onSelect={handleServerSelect} selected={selectedServer} />
+                    <NavLink to="/admin" end onClick={() => setSelectedServer(null)}>Dashboard</NavLink>
+                    <ServerDropdown onSelect={setSelectedServer} selected={selectedServer} />
                 </nav>
                 <button className={classes.logoutBtn} onClick={logout}>Logout</button>
             </aside>

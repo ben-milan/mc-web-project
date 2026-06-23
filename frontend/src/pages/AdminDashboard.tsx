@@ -1,6 +1,3 @@
-// @ts-ignore
-import classes from "./AdminDashboard.module.css"
-
 export default function AdminDashboard() {
     return (
         <div>
