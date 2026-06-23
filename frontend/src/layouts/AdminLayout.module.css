@@ -1,0 +1,168 @@
+.adminLayout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.adminSidebar {
+    background-color: #1e2433;
+    border-radius: 0 16px 16px 0;
+    height: 100vh;
+    width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.adminSidebar h1 {
+    text-align: center;
+    color: #e2e8f0;
+    font-family: Tahoma, sans-serif;
+    font-size: 18px;
+    margin: 0 0 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.adminSidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+/* shared style for NavLink and dropdown trigger */
+.adminSidebar nav a,
+.navDropdown {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #94a3b8;
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, color 0.15s;
+    box-sizing: border-box;
+}
+
+.adminSidebar nav a:hover,
+.navDropdown:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e2e8f0;
+}
+
+.adminSidebar nav a.active,
+.navDropdown.active {
+    background: rgba(99, 102, 241, 0.2);
+    color: #c7d2fe;
+}
+
+/* dropdown trigger arrow */
+.navDropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chevron {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-style: normal;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+/* child links indented under the dropdown */
+.dropdownChildren {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+    padding-left: 16px;
+    border-left: 2px solid rgba(99, 102, 241, 0.3);
+    margin-left: 12px;
+}
+
+.dropdownChildren a {
+    font-size: 13px !important;
+    padding: 6px 10px !important;
+}
+
+/* logout button */
+.logoutBtn {
+    margin-top: auto;
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: transparent;
+    color: #fca5a5;
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.logoutBtn:hover {
+    background: rgba(239, 68, 68, 0.12);
+}
+
+.adminContent {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.dropdownChildren {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+    padding-left: 16px;
+    border-left: 2px solid rgba(99, 102, 241, 0.3);
+    margin-left: 12px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.45s ease, opacity 0.45s ease;
+}
+
+.dropdownChildren.open {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.dropdownChildren button {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #94a3b8;         /* match your NavLink default color */
+    font-size: 13px;
+    font-family: Tahoma, sans-serif;
+    transition: background 0.15s, color 0.15s;
+    box-sizing: border-box;
+}
+
+.dropdownChildren button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e2e8f0;
+}
+
+.dropdownChildren button.active {
+    background: rgba(99, 102, 241, 0.2);
+    color: #c7d2fe;
+}
