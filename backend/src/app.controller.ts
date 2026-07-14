@@ -1,7 +1,9 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Res } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
+import * as http from 'http';
+import type { Response } from 'express';
 dotenv.config();
 
 @Controller()
@@ -60,5 +62,23 @@ export class AppController {
     if (response.data.status === 'success') {
       return { state: 'started' };
     }
+  }
+
+  @Get('/stream')
+  stream(@Res() res: Response) {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    const url = new URL(process.env.STREAM_URL ?? ''); // e.g. http://PI_IP:5000/stream
+
+    http.get(url, (piRes) => {
+      piRes.on('data', (chunk) => res.write(chunk));
+      piRes.on('end', () => res.end());
+      piRes.on('error', () => res.end());
+    });
+
+    // cleanup when client disconnects
+    res.on('close', () => res.end());
   }
 }

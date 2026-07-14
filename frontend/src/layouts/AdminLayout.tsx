@@ -1,20 +1,34 @@
-import {JSX, useState} from 'react';
+import { JSX, useState, useEffect } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 // @ts-ignore
 import { useAuth } from '../auth/AuthProvider.tsx';
 // @ts-ignore
 import classes from './AdminLayout.module.css';
 
-// Import your server components
-// import SmpServer from '../server/SmpServer.tsx';
-// import ModServer from '../server/ModServer.tsx';
-// import DevServer from '../server/DevServer.tsx';
+const BACKEND = process.env.REACT_APP_BACKEND_URL
+
+function SmpServerTest() {
+    const [data, setData] = useState<string>('Connecting...');
+
+    useEffect(() => {
+        const es = new EventSource(`${ BACKEND }/stream`);
+
+        es.onmessage = (e) => setData(e.data);
+        es.onerror = () => setData('SSE error');
+
+        return () => es.close();
+    }, []);
+
+    return <div>{data}</div>;
+}
 
 const SERVER_COMPONENTS: Record<string, JSX.Element> = {
-    smp: <div>SMP Server Component</div>, // Replace with <SmpServer />
-    mod: <div>Mod Server Component</div>, // Replace with <ModServer />
-    dev: <div>Dev Server Component</div>, // Replace with <DevServer />
+    smp: <SmpServerTest />,
+    mod: <div>Mod Server Component</div>,
+    dev: <div>Dev Server Component</div>,
 };
+
+// ... rest of your file unchanged
 
 function ServerDropdown({ onSelect, selected }: { onSelect: (key: string) => void, selected: string | null }) {
     const [open, setOpen] = useState(false);
