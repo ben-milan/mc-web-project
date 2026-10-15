@@ -1,4 +1,4 @@
-import { JSX, useState, useEffect } from 'react';
+import { JSX, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 // @ts-ignore
 import { useAuth } from '../auth/AuthProvider.tsx';
@@ -6,8 +6,6 @@ import { useAuth } from '../auth/AuthProvider.tsx';
 import classes from './AdminLayout.module.css';
 // @ts-ignore
 import ServerConsole from "../components/ServerConsole.tsx";
-
-const BACKEND = process.env.REACT_APP_BACKEND_URL
 
 const SERVER_COMPONENTS: Record<string, JSX.Element> = {
     smp: <ServerConsole path="C:\Server\smp-server\logs\latest.log" server="smp-server" />,
