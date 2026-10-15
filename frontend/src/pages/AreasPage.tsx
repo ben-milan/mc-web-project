@@ -3,7 +3,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 // @ts-ignore
 import bluemap from "../img/map.png"
-import * as trace_events from "node:trace_events";
 
 const CALIBRATION = {
     originX: -4031.367,

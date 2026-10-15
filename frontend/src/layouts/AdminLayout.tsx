@@ -9,21 +9,6 @@ import ServerConsole from "../components/ServerConsole.tsx";
 
 const BACKEND = process.env.REACT_APP_BACKEND_URL
 
-function SmpServerTest() {
-    const [data, setData] = useState<string>('Connecting...');
-
-    useEffect(() => {
-        const es = new EventSource(`${ BACKEND }/stream`);
-
-        es.onmessage = (e) => setData(e.data);
-        es.onerror = () => setData('SSE error');
-
-        return () => es.close();
-    }, []);
-
-    return <div>{data}</div>;
-}
-
 const SERVER_COMPONENTS: Record<string, JSX.Element> = {
     smp: <ServerConsole path="C:\Server\smp-server\logs\latest.log" server="smp-server" />,
     mod: <ServerConsole path="C:\Server\mod-server\logs\latest.log" server="mod-server" />,

@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import React from "react";
 
 const BACKEND = process.env.REACT_APP_BACKEND_URL;
 
@@ -11,7 +11,7 @@ export default function MapPage() {
     );
 }
 
-function btnStyle(color, disabled = false) {
+function btnStyle(color: string, disabled = false) {
     return {
         padding: '8px 16px',
         borderRadius: 6,
