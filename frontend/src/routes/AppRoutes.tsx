@@ -18,6 +18,13 @@ import AdminDashboard from '../pages/AdminDashboard.tsx';
 // @ts-ignore
 import ServerManagementPage from "../pages/ServerManagementPage.tsx";
 
+// @ts-ignore
+import BlueMapPage from "../pages/blueMap.tsx"
+// @ts-ignore
+import AreasPage from "../pages/AreasPage.tsx";
+// @ts-ignore
+import AreasAdminPage from "../pages/AreasAdminPage.tsx";
+
 export default function AppRoutes() {
     return (
         <BrowserRouter>
@@ -28,6 +35,8 @@ export default function AppRoutes() {
                     <Route element={<MainLayout />}>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/login" element={<LoginPage />} />
+                        <Route path="/map/smp" element={<BlueMapPage />} />
+                        <Route path="/map/smp/areas" element={<AreasPage />} />
                     </Route>
 
                     {/* Admin — protected */}
@@ -35,6 +44,7 @@ export default function AppRoutes() {
                         <Route path="/admin" element={<AdminLayout />}>
                             <Route index element={<AdminDashboard />} />
                             <Route path="server" element={<ServerManagementPage />} />
+                            <Route path="/admin/areas" element={<AreasAdminPage />} />
                         </Route>
                     </Route>
 

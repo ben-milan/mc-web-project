@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useState, useEffect } from "react";
 // @ts-ignore
 import classes from "./HomePage.module.css";
@@ -7,18 +8,15 @@ import Requirements from "../components/Requirements.tsx";
 import ServerInfo from "../components/ServerInfo.tsx";
 // @ts-ignore
 import ServerStats from "../components/ServerStats.tsx";
+// @ts-ignore
+import Panorama from "../components/Panorama.tsx";
 
 function App() {
 
     const BACKEND = process.env.REACT_APP_BACKEND_URL;
 
-    const [pos, setPos] = useState({ x: 0, y: 0 });
-
     const [modServerState, setModServerState] =  useState("🔴 Server Offline")
     const [smpServerState, setSmpServerState] =  useState("🔴 Server Offline")
-
-    const snappedX = Math.round(pos.x / 7) * 7;
-    const snappedY = Math.round(pos.y / 7) * 7;
 
     useEffect(() => {
         const API_URL = process.env.REACT_APP_STATUS_URL;
@@ -59,21 +57,8 @@ function App() {
     }, []);
 
     return (
-        <div
-            className={`${classes.background}`}
-            onMouseMove={(e) =>
-                setPos({ x: e.clientX, y: e.clientY })
-            }
-        >
-            <div
-                className={`${classes["color-layer"]}`}
-                style={{
-                    WebkitMaskImage: `radial-gradient(circle 800px at ${snappedX}px ${snappedY}px, black 0%, transparent 100%)`,
-                    WebkitMaskRepeat: "no-repeat",
-                    maskImage: `radial-gradient(circle 800px at ${snappedX}px ${snappedY}px, black 0%, transparent 100%)`,
-                    maskRepeat: "no-repeat",
-                }}
-            />
+        <div className={classes.background}>
+            <Panorama />
             <div className={`${classes.content}`}>
                 <div className={`${classes.content}`}>
                     <ServerInfo
@@ -105,13 +90,14 @@ function App() {
             <div className={`${classes["content-stats"]}`}>
                 <ServerStats
                     serverIP="51.154.202.221:25567"
-                    serverName="SMP-Server"
+                    serverName="SMP"
                     serverState={smpServerState}
                     className="server-stats"
+                    mapLink="./map/smp"
                 />
                 <ServerStats
                     serverIP="51.154.202.221:25566"
-                    serverName="Mod-Server"
+                    serverName="Mod"
                     serverState={modServerState}
                     className="server-stats"
                 />

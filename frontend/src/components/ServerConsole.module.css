@@ -1,0 +1,117 @@
+.console {
+    display: flex;
+    flex-direction: column;
+    width: 65vw;
+    aspect-ratio: 80 / 40;
+    font-family: "Courier New", monospace;
+}
+
+.consoleHeader {
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    color: rgba(230, 255, 230, 0.3);;
+    background-color: rgba(16, 16, 16, 0.95);
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(230, 255, 230, 0.04);
+
+}
+
+.consoleHeader p {
+    padding-left: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    cursor: default;
+}
+
+.consoleWindow {
+    background-color: rgba(16, 16, 16, 0.993);
+    flex: 1;
+    min-height: 0;
+    overflow: scroll;
+    color: rgba(255, 255, 255, 0.6);
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-right: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    scrollbar-width: thin;
+}
+
+.consoleInput {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: rgba(230, 255, 230, 0.5);
+    background-color: rgba(16, 16, 16, 0.95);
+    flex-shrink: 0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(230, 255, 230, 0.04);
+}
+
+.consoleInput span {
+    margin-left: 10px;
+    cursor: default;
+}
+
+.consoleInput input {
+    flex: 1;
+    margin-right: 20px;
+    font-family: 'Courier New', monospace;
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: rgba(230, 255, 230, 0.5);
+
+}
+.consoleInput input:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(230, 255, 230, 0.3);
+}
+
+.trafficLight {
+    display: flex;
+    gap: 6px;
+    padding-top: 7px;
+    margin-left: auto;
+    padding-right: 6px;
+}
+
+.dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.dot svg {
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.consoleHeader:hover .dot svg {
+    opacity: 1;
+}
+
+
+.red {
+    background-color: #ff5f56;
+}
+
+
+.yellow {
+    background-color: #ffbd2e;
+}
+
+
+.green {
+    background-color: #27c93f;
+}
+

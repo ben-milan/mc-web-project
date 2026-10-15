@@ -4,6 +4,8 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider.tsx';
 // @ts-ignore
 import classes from './AdminLayout.module.css';
+// @ts-ignore
+import ServerConsole from "../components/ServerConsole.tsx";
 
 const BACKEND = process.env.REACT_APP_BACKEND_URL
 
@@ -23,9 +25,9 @@ function SmpServerTest() {
 }
 
 const SERVER_COMPONENTS: Record<string, JSX.Element> = {
-    smp: <SmpServerTest />,
-    mod: <div>Mod Server Component</div>,
-    dev: <div>Dev Server Component</div>,
+    smp: <ServerConsole path="C:\Server\smp-server\logs\latest.log" server="smp-server" />,
+    mod: <ServerConsole path="C:\Server\mod-server\logs\latest.log" server="mod-server" />,
+    dev: <ServerConsole path="C:\Server\dev-server\logs\latest.log" server="dev-server" />,
 };
 
 // ... rest of your file unchanged
@@ -55,6 +57,12 @@ function ServerDropdown({ onSelect, selected }: { onSelect: (key: string) => voi
 export default function AdminLayout() {
     const { logout } = useAuth();
     const [selectedServer, setSelectedServer] = useState<string | null>(null);
+    const [openedServers, setOpenedServers] = useState<Set<string>>(new Set());
+
+    const handleSelect = (key: string) => {
+        setSelectedServer(key);
+        setOpenedServers(prev => (prev.has(key) ? prev : new Set(prev).add(key)));
+    };
 
     return (
         <div className={classes.adminLayout}>
@@ -62,12 +70,22 @@ export default function AdminLayout() {
                 <h1>Admin Panel</h1>
                 <nav>
                     <NavLink to="/admin" end onClick={() => setSelectedServer(null)}>Dashboard</NavLink>
-                    <ServerDropdown onSelect={setSelectedServer} selected={selectedServer} />
+                    <NavLink to="/admin/areas" end onClick={() => setSelectedServer(null)}>Areas Management</NavLink>
+                    <ServerDropdown onSelect={handleSelect} selected={selectedServer} />
                 </nav>
                 <button className={classes.logoutBtn} onClick={logout}>Logout</button>
             </aside>
             <main className={classes.adminContent}>
-                {selectedServer ? SERVER_COMPONENTS[selectedServer] : <Outlet />}
+                {[...openedServers].map(key => (
+                    <div
+                        key={key}
+                        className={classes.centeredContent}
+                        style={{ display: key === selectedServer ? 'block' : 'none' }}
+                    >
+                        {SERVER_COMPONENTS[key]}
+                    </div>
+                ))}
+                {!selectedServer && <Outlet />}
             </main>
         </div>
     );

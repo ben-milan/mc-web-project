@@ -56,7 +56,7 @@ function ServerInfo({
       {showPassword && (
         <Password
           backend={backendURL}
-          endpoint={serverName.toLowerCase().concat("-check-pw")}
+          endpoint={"/" + serverName.toLowerCase().concat("-check-pw")}
           onStateChange={onStateChange}
         />
       )}

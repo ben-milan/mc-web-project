@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.leaflet-tooltip.area-label {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 3px;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  font-weight: 600;
+}

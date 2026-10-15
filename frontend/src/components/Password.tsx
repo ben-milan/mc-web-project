@@ -25,7 +25,7 @@ function Password({ endpoint, onStateChange, backend }: PasswordProps) {
       if (data.valid) {
         setBgColor("rgba(0, 255, 0, 0.4)");
         onStateChange("🟡 Server Starting...");
-        const res = await fetch(`${backend + "start-server"}`, {
+        const res = await fetch(`${backend + "/start-server"}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ server: data.server }),
