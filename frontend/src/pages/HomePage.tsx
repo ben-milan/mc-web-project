@@ -1,0 +1,110 @@
+// @ts-ignore
+import React, { useState, useEffect } from "react";
+// @ts-ignore
+import classes from "./HomePage.module.css";
+// @ts-ignore
+import Requirements from "../components/Requirements.tsx";
+// @ts-ignore
+import ServerInfo from "../components/ServerInfo.tsx";
+// @ts-ignore
+import ServerStats from "../components/ServerStats.tsx";
+// @ts-ignore
+import Panorama from "../components/Panorama.tsx";
+
+function App() {
+
+    const BACKEND = process.env.REACT_APP_BACKEND_URL;
+
+    const [modServerState, setModServerState] =  useState("🔴 Server Offline")
+    const [smpServerState, setSmpServerState] =  useState("🔴 Server Offline")
+
+    useEffect(() => {
+        const API_URL = process.env.REACT_APP_STATUS_URL;
+
+        async function fetchServerStatus() {
+            try {
+                const res = await fetch(API_URL);
+                if (!res.ok) {
+                    console.error("Failed to fetch server status:", res.status);
+                    setModServerState("🔴 Server Offline");
+                    setSmpServerState("🔴 Server Offline");
+                    return;
+                }
+                const data = await res.json();
+
+                // Map backend status to frontend state
+                setModServerState(
+                    data["mod-server"]?.status === "offline"
+                        ? "🔴 Server Offline"
+                        : "🟢 Server Online"
+                );
+
+                setSmpServerState(
+                    data["smp-server"]?.status === "offline"
+                        ? "🔴 Server Offline"
+                        : "🟢 Server Online"
+                );
+
+            } catch (err) {
+                console.error("Error fetching server state:", err);
+                // Optional: fallback to offline if fetch fails
+                setModServerState("🔴 Server Offline");
+                setSmpServerState("🔴 Server Offline");
+            }
+        }
+
+        fetchServerStatus();
+    }, []);
+
+    return (
+        <div className={classes.background}>
+            <Panorama />
+            <div className={`${classes.content}`}>
+                <div className={`${classes.content}`}>
+                    <ServerInfo
+                        backendURL={BACKEND}
+                        className={`${classes["server-info"]}`}
+                        requirements={<Requirements items={[{ title: "Minecraft: ", display: "Latest Release", link:"https://minecraft.wiki/w/Java_Edition_version_history#Full_release"}]} />}
+                        buttonName="Start Server"
+                        serverName="Dev-Server"
+                        serverDescription="This server is mainly used for developing and testing plugins, mods, and other custom add-ons for the base game."
+                    />
+                    <ServerInfo
+                        backendURL={BACKEND}
+                        className={`${classes["server-info"]}`}
+                        onStateChange={setModServerState}
+                        buttonName="Not Available"
+                        serverName="Mod-Server"
+                        serverDescription="Welcome to a modded Minecraft server with a custom modpack. Dive in and enjoy exploring! "
+                    />
+                    <ServerInfo
+                        backendURL={BACKEND}
+                        className={`${classes["server-info"]}`}
+                        requirements={<Requirements items={[{ title: "Minecraft (Java): ", display: "v26.3", link: "https://www.minecraft.net/en-us/article/minecraft-java-edition-26-3"}, { title: "Rec. Modpack: ", display: "Fabric Modpack", link:"https://modrinth.com/modpack/ohne-schnickschnack/version/1.2.0"}]}/>}
+                        onStateChange={setSmpServerState}
+                        buttonName="Start Server"
+                        serverName="SMP-Server"
+                        serverDescription="Want all the latest features? Jump into the worlds of the up-to-date fabric SMP."/>
+                </div>
+            </div>
+            <div className={`${classes["content-stats"]}`}>
+                <ServerStats
+                    serverIP="51.154.202.221:25567"
+                    serverName="SMP"
+                    serverState={smpServerState}
+                    className="server-stats"
+                    mapLink="./map/smp"
+                />
+                <ServerStats
+                    serverIP="51.154.202.221:25566"
+                    serverName="Mod"
+                    serverState={modServerState}
+                    className="server-stats"
+                />
+            </div>
+        </div>
+
+    );
+}
+
+export default App;

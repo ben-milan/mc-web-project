@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
+// @ts-ignore
+import classes from "../pages/HomePage.module.css"
+
 interface PasswordProps {
   endpoint: string;
   backend: string;
-  onStateChange: (value: string) => void;
+  onStateChange?: (value: string) => void;
 }
 
 function Password({ endpoint, onStateChange, backend }: PasswordProps) {
@@ -21,8 +24,8 @@ function Password({ endpoint, onStateChange, backend }: PasswordProps) {
       const data = await res.json();
       if (data.valid) {
         setBgColor("rgba(0, 255, 0, 0.4)");
-        onStateChange("🟡 Server Starting...");
-        const res = await fetch(`${backend + "start-server"}`, {
+        onStateChange?.("🟡 Server Starting...");
+        const res = await fetch(`${backend + "/start-server"}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ server: data.server }),
@@ -31,11 +34,11 @@ function Password({ endpoint, onStateChange, backend }: PasswordProps) {
         const startData = await res.json();
 
         if (startData.state === "started") {
-          onStateChange("🟢 Server Online");
+          onStateChange?.("🟢 Server Online");
         }
 
         if (startData.state === "running") {
-          onStateChange("🟢 Server Online");
+          onStateChange?.("🟢 Server Online");
           alert("Server has already been started!");
         }
       } else {
@@ -53,7 +56,7 @@ function Password({ endpoint, onStateChange, backend }: PasswordProps) {
       type="text"
       name="password"
       id="password"
-      className="container-pw"
+      className={`${classes["container-pw"]}`}
       style={{ backgroundColor: bgColor }}
       placeholder="Enter the Code"
       value={password}

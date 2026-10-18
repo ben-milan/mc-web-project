@@ -1,5 +1,6 @@
 import React from "react";
-
+// @ts-ignore
+import classes from "../pages/HomePage.module.css"
 interface RequirementItem {
   title: string;
   display: string;
@@ -12,12 +13,12 @@ interface RequirementsProps {
 
 function Requirements({ items }: RequirementsProps) {
   return (
-    <div className="requirements-list">
+    <div className={`${classes["requirements-list"]}`}>
       {items.map((item, index) => (
-        <p key={index} className="req-box">
+        <p key={index} className={`${classes["req-box"]}`}>
           {item.title}
           <a
-            className="requirements"
+            className={`${classes.requirements}`}
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
