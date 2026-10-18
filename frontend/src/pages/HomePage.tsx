@@ -80,11 +80,11 @@ function App() {
                     <ServerInfo
                         backendURL={BACKEND}
                         className={`${classes["server-info"]}`}
-                        requirements={<Requirements items={[{ title: "Minecraft (Java): ", display: "v1.21.11", link: "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-21-11"}, { title: "Rec. Modpack: ", display: "Fabric Modpack", link:"https://modrinth.com/modpack/ohne-schnickschnack"}]}/>}
+                        requirements={<Requirements items={[{ title: "Minecraft (Java): ", display: "v26.3", link: "https://www.minecraft.net/en-us/article/minecraft-java-edition-26-3"}, { title: "Rec. Modpack: ", display: "Fabric Modpack", link:"https://modrinth.com/modpack/ohne-schnickschnack/version/1.2.0"}]}/>}
                         onStateChange={setSmpServerState}
-                        buttonName="Under Maintenance"
+                        buttonName="Start Server"
                         serverName="SMP-Server"
-                        serverDescription="Want all the latest features? Jump into the worlds of the always-up-to-date fabric SMP."/>
+                        serverDescription="Want all the latest features? Jump into the worlds of the up-to-date fabric SMP."/>
                 </div>
             </div>
             <div className={`${classes["content-stats"]}`}>

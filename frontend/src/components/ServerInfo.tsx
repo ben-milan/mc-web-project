@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {ReactNode, useState} from "react";
 // @ts-ignore
 import StartServerButton from "./StartServerButton.tsx";
 // @ts-ignore
@@ -12,7 +12,7 @@ interface ServerInfoProps {
   className?: string;
   serverName: string;
   buttonName: string;
-  requirements?: string;
+  requirements?: ReactNode;
   serverDescription: string;
   backendURL: string;
   onStateChange?: (newState: string) => void;
